@@ -38,12 +38,12 @@ const Login = () => {
             <form onSubmit={handleLogin}>
             <div>
                 <label htmlFor="email">Email</label>
-                <input onChange={e => setEmail(e.target.value)} className="border border-amber-400" type="email" />
+                <input id="email" onChange={e => setEmail(e.target.value)} className="border border-amber-400" type="email" />
                 {errorEmail && <p>{errorEmail}</p>}
             </div>
             <div>
                 <label htmlFor="password">Password</label>
-                <input onChange={e => setPassword(e.target.value)} className="border border-amber-400" type="password" />
+                <input id="password" onChange={e => setPassword(e.target.value)} className="border border-amber-400" type="password" />
                 {errorPassword && <p>{errorPassword}</p>}
 
             </div>
