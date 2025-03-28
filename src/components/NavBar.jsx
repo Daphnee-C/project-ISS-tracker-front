@@ -12,17 +12,17 @@ const NavBar = () => {
 
     return (
         <header>
-            <nav className="bg-cyan-900 bg-opacity-20 backdrop-blur-md rounded-3xl shadow-lg">
+            <nav className="bg-cyan-900 bg-opacity-20 backdrop-blur-md rounded-3xl shadow-lg py-12">
                 <div className="relative">
 
-                    <button className="lg:hidden flex items-center absolute left-10 top-2 z-10 flex-col gap-1" onClick={toggleMenu}>
+                    <button className="lg:hidden flex items-center absolute left-10 z-10 flex-col gap-1" onClick={toggleMenu}>
                         <span className="block w-6 h-0.5 bg-white"></span>
                         <span className="block w-6 h-0.5 bg-white"></span>
                         <span className="block w-6 h-0.5 bg-white"></span>
                     </button>
                 </div>
 
-                <ul className={`flex flex-col md:flex-row px-16 py-3 md:px-6 items-center justify-center gap-4 ${isMenuOpen ? 'block' : 'hidden'}`}>
+                <ul className={`flex flex-col md:flex-row px-16 items-center justify-center gap-4 ${isMenuOpen ? 'block' : 'hidden'}`}>
                     <li className="transition-all w-40 text-center duration-300 ease-in-out transform hover:scale-110 hover:shadow-xl">
                         <Link to="/" className="block px-4 py-2 bg-[#a5b8cb] bg-opacity-20 backdrop-blur-md rounded-full text-black font-medium hover:bg-white/55 transition-all duration-300 ease-in-out">
                             Home
