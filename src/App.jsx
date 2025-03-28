@@ -1,13 +1,15 @@
 import { useState } from 'react'
-
+import APOD from "./components/APOD";
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <h1 className='bg-red-500'>hello world</h1>
+      <div className="min-h-screen flex flex-col items-center justify-center">
+      <h1 className="text-4xl font-bold py-6">ISS Tracker 🛰️</h1>
+      <APOD />
+    </div>
       
       
     </>
