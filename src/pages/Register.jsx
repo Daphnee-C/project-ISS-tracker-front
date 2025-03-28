@@ -1,8 +1,11 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext.jsx";
 
 
 const Register = () => {
+
+    const {handleRegister, error} = useContext(AuthContext)
+
     const [formRegister, setFormRegister] = useState({
         first_name : "",
         last_name : "",
@@ -10,31 +13,10 @@ const Register = () => {
         password : "",
     });
 
-    const  [error, setError] = useState("");
-
-    const handleRegister = async (e) => {
-        e.preventDefault()
-        setError('')
-        
-        try {
-            const response = await axios.post('http://localhost:8000/api/register', formRegister);
-
-            if(response.status === 201) {
-                alert('Account is created');
-            }
-        } catch (error) {
-            if(error.response.status === 401){
-                setError('Email already exist, please enter a new one.')
-            }else if (error.response.status === 500) {
-                setError('Internal server error, please try later.')
-            }
-        }
-    }
-    
     return (
         <main className="flex flex-col gap-4 items-center">
             <h1 className="py-4 text-2xl font-semibold">Register</h1>
-            <form onSubmit={handleRegister} className="flex flex-col gap-2 w-96">
+            <form onSubmit={(e) => handleRegister(e, formRegister)} className="flex flex-col gap-2 w-96">
                 <div className="flex flex-col gap-2">
                     <label htmlFor="firstname">Firstname</label>
                     <input
