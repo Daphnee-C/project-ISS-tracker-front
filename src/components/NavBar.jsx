@@ -34,7 +34,7 @@ const NavBar = () => {
                             </li>
 
                             <li className="transition-all w-40 text-center duration-300 ease-in-out transform hover:scale-110 hover:shadow-xl">
-                                <button onClick={handleLogout} className="block px-4 py-2 bg-[#a5b8cb] bg-opacity-20 backdrop-blur-md rounded-full text-black font-medium hover:bg-white/55 transition-all duration-300 ease-in-out">
+                                <button onClick={handleLogout} className="block px-4 py-2 bg-[#a5b8cb] bg-opacity-20 backdrop-blur-md rounded-full text-black font-medium hover:bg-white/55 transition-all duration-300 ease-in-out w-full">
                                     Logout
                                 </button>
                             </li>
