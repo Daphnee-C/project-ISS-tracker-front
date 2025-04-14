@@ -21,8 +21,12 @@ const IssMap = () => {
     const refreshMarker = async () => {
         try {
             const response = await axios.get('https://api.wheretheiss.at/v1/satellites/25544');
+
             const {latitude, longitude} = response.data;
+
             issMarker.current.setLatLng([latitude,longitude]);
+
+            lfMap.current.setView([latitude,longitude]);
         } catch (error) {
             console.log(error);
         }
