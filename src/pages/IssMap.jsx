@@ -19,7 +19,7 @@ const IssMap = () => {
 
         const {latitude, longitude} = issDatas;
 
-        const map = L.map('map').setView([latitude, longitude], 1);
+        const map = L.map('map').setView([latitude, longitude], 3);
 
         const issIcon = L.icon({
             iconUrl : 'https://cdn-icons-png.freepik.com/512/2388/2388204.png?ga=GA1.1.1735392304.1743175494',

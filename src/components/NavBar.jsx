@@ -15,7 +15,7 @@ const NavBar = () => {
             <nav className="bg-cyan-900 bg-opacity-20 backdrop-blur-md rounded-3xl shadow-lg py-12">
                 <div className="relative">
 
-                    <button className="lg:hidden flex items-center absolute left-10 z-10 flex-col gap-1" onClick={toggleMenu}>
+                    <button className="lg:hidden flex items-center absolute left-10 z-10 flex-col gap-1 cursor-pointer" onClick={toggleMenu}>
                         <span className="block w-6 h-0.5 bg-white"></span>
                         <span className="block w-6 h-0.5 bg-white"></span>
                         <span className="block w-6 h-0.5 bg-white"></span>

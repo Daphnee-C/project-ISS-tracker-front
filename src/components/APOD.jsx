@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
 
 const APOD = () => {
   const [apod, setApod] = useState(null)
@@ -14,7 +13,6 @@ const APOD = () => {
         const res = await fetch(url)
         
         if (!res.ok) {
-         
           const errorBody = await res.text()
           throw new Error(`HTTP error! status: ${res.status}, message: ${errorBody}`)
         }
