@@ -1,25 +1,39 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef, Component } from "react"
 import axios from 'axios'
 
 const IssMap = () => {
 
     const [issDatas, setIssDatas] = useState(null);
     const [mapLoading , setMapLoading] = useState(true);
+
+    const issMarker = useRef(null);
+    const lfMap = useRef({});
+
     const issLocate = async () => {
         try {
             const response = await axios.get('https://api.wheretheiss.at/v1/satellites/25544');
-            setIssDatas(response.data);
+            setIssDatas(response.data)
         } catch (error) {
             console.log(error);
         }
     }
     
+    const refreshMarker = async () => {
+        try {
+            const response = await axios.get('https://api.wheretheiss.at/v1/satellites/25544');
+            const {latitude, longitude} = response.data;
+            issMarker.current.setLatLng([latitude,longitude]);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const initMap = async () => {
         if (!issDatas) return;
 
         const {latitude, longitude} = issDatas;
 
-        const map = L.map('map').setView([latitude, longitude], 3);
+        lfMap.current = L.map('map').setView([latitude, longitude], 3);
 
         const issIcon = L.icon({
             iconUrl : 'https://cdn-icons-png.freepik.com/512/2388/2388204.png?ga=GA1.1.1735392304.1743175494',
@@ -28,15 +42,25 @@ const IssMap = () => {
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19
-        }).addTo(map);
+        }).addTo(lfMap.current);
 
-        L.marker([latitude, longitude], {icon : issIcon}).addTo(map);
+        issMarker.current = L.marker([latitude, longitude], {icon : issIcon}).addTo(lfMap.current);
+
         setMapLoading(false);
     }
 
     useEffect(() => {
-        // Api call iss
+        // First api call iss
         issLocate()
+
+        //  each 1sec, refresh marker
+        const interval = setInterval(() => {
+            if(Object.keys(lfMap.current).length !== 0){
+                refreshMarker();
+            }
+        }, 1000);
+
+        return () => clearInterval(interval);
     }, [])
 
     useEffect(() => {
